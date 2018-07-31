@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 
-const books = [
-{name: 'book1'},
-{name: 'book2'},
-{name: 'book3'}
-]
+class Books extends Component {
+	render() {
+		return (
+		<ol className="book-list">
+		{this.props.bookTitles.map((book) => (
+			<li key={book.id}>
+			{book.title}
+			</li>
+			))}
+		</ol>
+		)
+		}
+}
 
-const element = React.createElement('div', null, books)
-
-ReactDom.render(element, document.getElementById('root')
+export default Books
