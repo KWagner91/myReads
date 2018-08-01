@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import './App.css'
 import ReactDom from 'react-dom'
 import Books from './components/Book'
+import Shelfs from './components/Shelf'
 
 
 class BookApp extends React.Component {
@@ -43,7 +44,7 @@ class BookApp extends React.Component {
                         <div className="list-books-content">
                             <div>
                                 <div
-                                    className="bookshelf"> Currently Reading </div>
+                                    className="bookshelf"> <Shelfs /> </div>
                                 <div
                                     className="bookshelf"> <Books onChangeShelf={this.changeShelf} bookTitles = {this.state.bookTitles} />
                                     </div>
