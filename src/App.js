@@ -32,15 +32,34 @@ class BookApp extends React.Component {
 		
 	
 	render() {
-		
-    return (
-    <div>
-    <Books onChangeShelf={this.changeShelf} bookTitles = {this.state.bookTitles} />
-    </div>
-   )
-  }
+		 return (
+            <div className="app">
+                
+                    <div className="list-books">
+                        <div className="list-books-title">
+                            <h1>MyReads</h1>
+                        </div>
+                        <div className="list-books-content">
+                            <div>
+                                <div
+                                    className="bookshelf"> Currently Reading </div>
+                                <div
+                                    className="bookshelf"> <Books onChangeShelf={this.changeShelf} bookTitles = {this.state.bookTitles} />
+                                    </div>
+                                <div
+                                    className="bookshelf"> Read Books
+                                    </div>
+                            </div>
+                        </div>
+                        <div className="open-search">
+                        </div>
+                        
+                    </div>
+            </div>
+        )
+    }
 }
-
-
+		
+		
 
 export default BookApp
