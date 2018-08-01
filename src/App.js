@@ -24,6 +24,7 @@ class BookApp extends React.Component {
 		}
 		
 
+
 	changeShelf = (book) => {
 		this.setState((state) => ({
 			bookTitles: state.bookTitles.filter((b) => b.id !== book.id)

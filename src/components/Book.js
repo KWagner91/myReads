@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDom from 'react-dom'
+import PropTypes from 'prop-types'
 
 class Books extends Component {
 	render() {
@@ -24,6 +25,12 @@ class Books extends Component {
 		</ol>
 		)
 		}
+}
+
+// Prop types
+	Books.propTypes = {
+	bookTitles: PropTypes.array.isRequired,
+	changeShelf: PropTypes.func.isRequired
 }
 
 export default Books
