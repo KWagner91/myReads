@@ -120,7 +120,8 @@ body, .app {
 }
 
 .book {
-  width: 140px;
+  width: 240px;
+  padding: 3%;
 }
 .book-title,
 .book-authors {
