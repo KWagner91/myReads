@@ -4,6 +4,7 @@ import './App.css'
 import ReactDom from 'react-dom'
 import Books from './components/Book'
 import Shelfs from './components/Shelf'
+import SearchBar from './components/Search'
 
 
 class BookApp extends React.Component {
@@ -36,7 +37,7 @@ class BookApp extends React.Component {
 	render() {
 		 return (
             <div className="app">
-                
+                <SearchBar />
                     <div className="list-books">
                         <div className="list-books-title">
                             <h1>MyReads</h1>
