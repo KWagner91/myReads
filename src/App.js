@@ -4,7 +4,10 @@ import './App.css'
 import ReactDom from 'react-dom'
 import Books from './components/Book'
 
-const bookTitles = [
+
+class BookApp extends React.Component {
+	state = {
+		bookTitles: [
   {
     "id": "Ender's Game",
     "title": "Ender's Game",
@@ -18,14 +21,21 @@ const bookTitles = [
     "cover": "http://books.google.com/books/content?id=pD6arNyKyi8C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70Rw0CCwNZh0SsYpQTkMbvz23npqWeUoJvVbi_gXla2m2ie_ReMWPl0xoU8Quy9fk0Zhb3szmwe8cTe4k7DAbfQ45FEzr9T7Lk0XhVpEPBvwUAztOBJ6Y0QPZylo4VbB7K5iRSk&source=gbs_api"
   }
 ]
+		}
+		
 
-
-class BookApp extends React.Component {
+	changeShelf = (book) => {
+		this.setState((state) => ({
+			bookTitles: state.bookTitles.filter((b) => b.id !== book.id)
+			}))
+		}
+		
+	
 	render() {
 		
     return (
     <div>
-    <Books bookTitles = {bookTitles}/>
+    <Books onChangeShelf={this.changeShelf} bookTitles = {this.state.bookTitles} />
     </div>
    )
   }

@@ -13,6 +13,7 @@ class Books extends Component {
 			<div className='list-books-content'>
               <p>{book.title}</p>
               <p>{book.authors}</p>
+              <button onClick={() => this.props.onChangeShelf(book)}>Change Shelf</button>
             </div>
             <button className='open-search'>
               Search
