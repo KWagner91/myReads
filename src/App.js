@@ -5,6 +5,7 @@ import ReactDom from 'react-dom'
 import Books from './components/Book'
 import Shelfs from './components/Shelf'
 import SearchBar from './components/Search'
+import ChangingShelf from './components/ChangeShelf'
 
 
 class BookApp extends React.Component {
@@ -17,14 +18,6 @@ componentDidMount() {
 		this.setState({bookTitles: book})
 	})
 }
-		
-
-//User clicks button to change book shelves
-	changeShelf = (book) => {
-		this.setState((state) => ({
-			bookTitles: state.bookTitles.filter((b) => b.id !== book.id)
-			}))
-		}
 		
 	
 	render() {
