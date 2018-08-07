@@ -4,38 +4,28 @@ import PropTypes from 'prop-types'
 import ChangingShelf from './ChangeShelf'
 
 class Books extends Component {
-	render() {
-		return (
-		<ol className="books-grid">
-				{this.props.bookTitles.map((book) => (
-			<div className="book" id={book.id}>
-				<div className="book-top">
-					<div className='book-cover' style={{
-					backgroundImage:`url(${book.imageLinks.thumbnail})`  
-					}}/>
-					<ChangingShelf />
-				</div>
-					<div className='list-books-content'>
-					  <p className='book-title'>{book.title}</p>
-					  <p className='book-authors'>{book.authors}</p>
-					  
-					</div>
-					
-				
-			</div>
-			))}
+	// Prop Types
+	static propTypes = {
+        book: PropTypes.object.isRequired,
+        changeShelf: PropTypes.func.isRequired
+};
 
-		</ol>
+	render() {
+		const {book} = this.props;
+		return (
+		<div className="book" id={book.id}>
+                <div className="book-top">
+                    <div className="book-cover" style={{backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                    <ChangingShelf
+                        book={book}
+                        changeShelf={this.props.changeShelf}/>
+                </div>
+                <div className="book-title">{book.name}</div>
+                <div className="book-authors">{book.authors}</div>
+		</div>
 		)
 		}
 }
 
-
-
-// Prop types
-	Books.propTypes = {
-	bookTitles: PropTypes.array.isRequired,
-	changeShelf: PropTypes.func.isRequired
-}
 
 export default Books

@@ -10,33 +10,61 @@ import ChangingShelf from './components/ChangeShelf'
 
 class BookApp extends React.Component {
 	state = {
-		bookTitles: []
+		books: []
 	}
 
 componentDidMount() {
 	BooksAPI.getAll().then((book)=> {
-		this.setState({bookTitles: book})
+		this.setState({books: book})
 	})
 }
-		
+
+getShelfBooks(shelfName){
+        return this.state.books.filter((b) => b.shelf === shelfName)
+    }
+
+// Change Shelf and append book to new Shelf
+    changeShelf = (book, newShelf) => {
+        BooksAPI.update(book, newShelf).then(() => {
+            book.shelf = newShelf;
+
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat([ book ])
+            }));
+        });
+};
 	
 	render() {
 		 return (
+                <div className="app">
                     <div className="list-books">
-						<SearchBar />
                         <div className="list-books-title">
                             <h1>MyReads</h1>
                         </div>
                         <div className="list-books-content">
-                                <Shelfs title='Currently Reading'/>
-                                <Shelfs title='Want to Read' 
-                                    content={<Books onChangeShelf={this.changeShelf} bookTitles = {this.state.bookTitles} />}
-                                    />
-                                <Shelfs title='Books Read'/>
+                            <div>
+                                <Shelfs
+                                    title="Currently Reading"
+                                    books={this.getShelfBooks("currentlyReading")}
+                                    changeShelf={this.changeShelf}
+                                />
+                                <Shelfs
+                                    title="Want to Read"
+                                    books={this.getShelfBooks("wantToRead")}
+                                    changeShelf={this.changeShelf}
+                                />
+                                <Shelfs
+                                    title="Read"
+                                    books={this.getShelfBooks("read")}
+                                    changeShelf={this.changeShelf}
+                                />
+                            </div>
                         </div>
-                        <div className="open-search">           
-                        </div>    
-					</div>
+                        <div className="open-search">
+                            
+                        </div>
+                    </div>
+				</div>
         )
     }
 }
