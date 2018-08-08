@@ -43,9 +43,6 @@ getShelfBooks(shelfName){
     })
   }
 
-  searchBook = (searchQuery) => {
-    return BooksAPI.search(searchQuery,20)
-}
 	
 	render() {
 		 return (

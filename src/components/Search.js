@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
+import Suggestions from "./Suggestion"
 
 
 
@@ -14,19 +15,32 @@ class SearchBar extends Component {
 		handleInputChange: PropTypes.func.isRequired  
 };
 
-	state = {
-		query: '',
+  getInfo = () => {
+    BooksAPI.getAll().then((book)=> {
+		this.setState({results: book})
+        })
   }
 
+
+	state = {
+		query: '',
+		results: []
+  }
+
+
 handleInputChange = () => {
-   this.setState({
-     query: this.search.value
-   })
- }
-		
-	clearQuery = () => {
-			this.setState({ query: '' })
-			}
+    this.setState({
+      query: this.search.value
+    }, () => {
+      if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length % 2 === 0) {
+          this.getInfo()
+        }
+      } else if (!this.state.query) {
+      }
+    })
+  }
+
 
 
 	render() {
@@ -40,7 +54,8 @@ handleInputChange = () => {
                 ref={input => this.search = input}
 				onChange={this.handleInputChange}
 			   />
-			   <p>{this.state.query}</p>
+			   <Suggestions results={this.state.results} />
+					
 								 
             </div>
           </div>
