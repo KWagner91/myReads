@@ -33,10 +33,24 @@ getShelfBooks(shelfName){
             }));
         });
 };
+
+ onUpdateBooks = (book, updatedShelf) => {
+    BooksAPI.update(book, updatedShelf).then(() => {
+          book.shelf = updatedShelf
+          this.setState(prevState => ({
+            books: prevState.books.filter((b) => b.id !== book.id).concat([book])
+          }))
+    })
+  }
+
+  searchBook = (searchQuery) => {
+    return BooksAPI.search(searchQuery,20)
+}
 	
 	render() {
 		 return (
                 <div className="app">
+                <SearchBar />
                     <div className="list-books">
                         <div className="list-books-title">
                             <h1>MyReads</h1>
