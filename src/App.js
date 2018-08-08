@@ -6,6 +6,8 @@ import Books from './components/Book'
 import Shelfs from './components/Shelf'
 import SearchBar from './components/Search'
 import ChangingShelf from './components/ChangeShelf'
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class BookApp extends React.Component {
@@ -46,8 +48,12 @@ getShelfBooks(shelfName){
 	
 	render() {
 		 return (
-                <div className="app">
-                <SearchBar />
+			<div className="app">
+                 <Route path="/search" render={( { history }) => (
+					  <SearchBar />
+					)} />
+
+				<Route exact path="/" render={() => (
                     <div className="list-books">
                         <div className="list-books-title">
                             <h1>MyReads</h1>
@@ -71,13 +77,11 @@ getShelfBooks(shelfName){
                                 />
                             </div>
                         </div>
-                        <div className="open-search">
-                            
                         </div>
-                    </div>
-				</div>
-        )
-    }
+                        )} />
+			</div>
+    )
+  }
 }
 		
 		
