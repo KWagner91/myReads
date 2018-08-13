@@ -12,14 +12,14 @@ To get started please follow the instructions bellow:
 
 Install dependencies and run with:
 
-> _npm_
+_npm_
 
 > npm install
 > npm start
 
 or
 
-> _yarn_
+_yarn_
 
 > yarn install
 > yarn start

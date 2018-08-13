@@ -14,7 +14,8 @@ class SearchBar extends Component {
 	// Prop Types
     static propTypes = {
 		query: PropTypes.string.isRequired,
-		handleInputChange: PropTypes.func.isRequired  
+		results: PropTypes.array.isRequired,
+		getBooks: PropTypes.func.isRequired  
 };
 
 	state = {
