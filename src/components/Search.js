@@ -23,20 +23,28 @@ class SearchBar extends Component {
   }
 
 
+getBooks = (event) => {
+    var value = event.target.value
+    this.setState(() => {
+      return {query: value}
+    })
+    this.search_books(value)
+}
 
-  getBooks = (e) => {
-    const input = e.target.value.trim()
-    this.setState({ query: input })
 
-    // User Input
-    if (input) {
-      BooksAPI.search(input).then((books) => {
-        books.length > 0 ?  this.setState({results: books }) : this.setState({ results: []})
+ search_books = (query) => {
+    if (query.length !== 0) {
+      BooksAPI.search(query, 10).then((books) => {
+        if (books.length > 0) {
+          books = books.filter((book) => (book.imageLinks))
+          this.setState(() => {
+            return {results: books}
+          })
+        }
       })
-
-    // No Input
-  } else 
-  this.setState({results: []})
+    } else {
+      this.setState({results: [], query: ''})
+    }
 }
 
 
@@ -66,6 +74,8 @@ class SearchBar extends Component {
 						  key={ book.id }
 						  changeShelf={ this.props.changeShelf }
 						/>
+		
+
 						 ))}
 					</ol>
 				  </div>
