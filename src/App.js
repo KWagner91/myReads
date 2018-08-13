@@ -50,7 +50,10 @@ getShelfBooks(shelfName){
 		 return (
 			<div className="app">
                  <Route path="/search" render={( { history }) => (
-					  <SearchBar />
+					  <SearchBar
+						books={ this.state.books }
+						changeShelf={ this.changeShelf }
+					/>
 					)} />
 
 				<Route exact path="/" render={() => (
@@ -76,6 +79,9 @@ getShelfBooks(shelfName){
                                     changeShelf={this.changeShelf}
                                 />
                             </div>
+                            <div className="open-search">
+								<Link to="/search">Search</Link>
+							</div>
                         </div>
                         </div>
                         )} />

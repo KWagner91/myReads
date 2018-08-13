@@ -4,7 +4,8 @@ import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
-import Suggestions from "./Suggestion"
+import Book from "./Book";
+import ChangingShelf from './ChangeShelf'
 import { Link } from 'react-router-dom'
 
 
@@ -16,55 +17,61 @@ class SearchBar extends Component {
 		handleInputChange: PropTypes.func.isRequired  
 };
 
-  getInfo = () => {
-    BooksAPI.getAll().then((book)=> {
-		this.setState({results: book})
-        })
-  }
-
-
 	state = {
 		query: '',
 		results: []
   }
 
 
-handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
-        }
-      } else if (!this.state.query) {
-      }
-    })
-  }
 
+  getBooks = (e) => {
+    const input = e.target.value.trim()
+    this.setState({ query: input })
+
+    // User Input
+    if (input) {
+      BooksAPI.search(input).then((books) => {
+        books.length > 0 ?  this.setState({results: books }) : this.setState({ results: []})
+      })
+
+    // No Input
+  } else 
+  this.setState({results: []})
+}
 
 
 	render() {
 		return (
-     
 		<div className="search-books">
             <div className="search-books-bar">
               <div className="search-books-input-wrapper">
               <input type="text"
                 placeholder="Search by title or author"
-                ref={input => this.search = input}
-				onChange={this.handleInputChange}
+                input= {this.state.query}
+				onChange={this.getBooks}
 			   />
-			   <Suggestions results={this.state.results} />
-					
-								 
-            </div>
+			   </div>
+			</div>	   
+			  <div className="search-books-results">
+				{ this.state.results.length > 0 && (
+				  <div>
+					<div className=''>
+					  <h3>Search returned { this.state.results.length } books </h3>
+					</div>
+					<ol className="books-grid">
+					  {this.state.results.map((book) => (
+						<Book
+						  book={ book }
+						  books={ this.props.books }
+						  key={ book.id }
+						  changeShelf={ this.props.changeShelf }
+						/>
+						 ))}
+					</ol>
+				  </div>
+)}
           </div>
-          <div className="search-books-results">
-           
-              </div>
-		</div>
-        
+		</div>  
 		)}
 }
 
