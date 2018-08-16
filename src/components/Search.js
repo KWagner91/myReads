@@ -1,5 +1,4 @@
 // Tutorial from https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20
-
 import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
@@ -25,19 +24,29 @@ class SearchBar extends Component {
 
 
 getBooks = (event) => {
-    var value = event.target.value
-    this.setState(() => {
-      return {query: value}
-    })
-    this.search_books(value)
+    const value = event.target.value
+    this.searchBooks(value)
+    
+    if(value) {
+        BooksAPI.search(value).then(books => {
+			if(!books || books.error) {
+				this.setState({ results: [] })
+			 } 
+			else {
+				this.setState(() => {
+				  return {results: books}
+				})
+			} 	
+})
+}
 }
 
 
- search_books = (query) => {
-    if (query.length !== 0) {
-      BooksAPI.search(query, 10).then((books) => {
-        if (books.length > 0) {
-          books = books.filter((book) => (book.imageLinks))
+
+ searchBooks = (userInput) => {
+    if (userInput.length !== 0){
+      BooksAPI.search(userInput, 10).then((books) => {
+        if (!userInput.hasOwnProperty('error')) {
           this.setState(() => {
             return {results: books}
           })
@@ -48,6 +57,12 @@ getBooks = (event) => {
     }
 }
 
+
+ handleBookShelf(book, shelf) {
+    BooksAPI.update(book, shelf)
+        .then(() => shelf !== 'none' ? alert(`${book.title} has been added to your shelf!`) : null)
+        .catch(() => alert('Something went wrong! Please try again!'));
+}
 
 	render() {
 		return (
@@ -75,8 +90,6 @@ getBooks = (event) => {
 						  key={ book.id }
 						  changeShelf={ this.props.changeShelf }
 						/>
-		
-
 						 ))}
 					</ol>
 				  </div>
