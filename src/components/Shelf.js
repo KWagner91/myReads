@@ -20,7 +20,9 @@ class Shelf extends Component {
                             <li key={book.id} className="contact-list-item">
                                 <Books
                                     book={book}
-                                    changeShelf={this.props.changeShelf}/>
+                                    changeShelf={this.props.changeShelf}
+                                    shelf={book.shelf}
+                                    />
                             </li>
                         ))}
                     </ol>

@@ -27,9 +27,8 @@ getShelfBooks(shelfName){
 
 // Change Shelf and append book to new Shelf
 changeShelf = (book, newShelf) => {
+		book.shelf = newShelf
         BooksAPI.update(book, newShelf).then(() => {
-            book.shelf = newShelf;
-
             this.setState(state => ({
                 books: state.books.filter(b => b.id !== book.id).concat([ book ])
             }));
