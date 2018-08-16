@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
-import Book from "./Book";
+import Books from "./Book";
 import ChangingShelf from './ChangeShelf'
 import { Link } from 'react-router-dom'
 
@@ -69,7 +69,7 @@ getBooks = (event) => {
 					</div>
 					<ol className="books-grid">
 					  {this.state.results.map((book) => (
-						<Book
+						<Books
 						  book={ book }
 						  books={ this.props.books }
 						  key={ book.id }

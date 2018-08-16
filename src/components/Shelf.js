@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
-import Book from "./Book";
+import Books from "./Book";
 
-class Shelfs extends Component {
+class Shelf extends Component {
 	// Prop types
  static propTypes = {
         books: PropTypes.array.isRequired,
@@ -18,7 +18,7 @@ class Shelfs extends Component {
                     <ol className="books-grid">
                         {this.props.books.map((book) => (
                             <li key={book.id} className="contact-list-item">
-                                <Book
+                                <Books
                                     book={book}
                                     changeShelf={this.props.changeShelf}/>
                             </li>
@@ -32,4 +32,4 @@ class Shelfs extends Component {
 
 
 
-export default Shelfs
+export default Shelf

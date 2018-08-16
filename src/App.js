@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ReactDom from 'react-dom'
 import Books from './components/Book'
-import Shelfs from './components/Shelf'
+import Shelf from './components/Shelf'
 import SearchBar from './components/Search'
 import ChangingShelf from './components/ChangeShelf'
 import { Route } from 'react-router-dom'
@@ -56,17 +56,17 @@ changeShelf = (book, newShelf) => {
                         </div>
                         <div className="list-books-content">
                             <div>
-                                <Shelfs
+                                <Shelf
                                     title="Currently Reading"
                                     books={this.getShelfBooks("currentlyReading")}
                                     changeShelf={this.changeShelf}
                                 />
-                                <Shelfs
+                                <Shelf
                                     title="Want to Read"
                                     books={this.getShelfBooks("wantToRead")}
                                     changeShelf={this.changeShelf}
                                 />
-                                <Shelfs
+                                <Shelf
                                     title="Read"
                                     books={this.getShelfBooks("read")}
                                     changeShelf={this.changeShelf}
