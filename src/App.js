@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
-import './App.css'
 import ReactDom from 'react-dom'
 import Books from './components/Book'
 import Shelf from './components/Shelf'
@@ -8,6 +7,7 @@ import SearchBar from './components/Search'
 import ChangingShelf from './components/ChangeShelf'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import './App.css'
 
 
 class BookApp extends React.Component {
@@ -54,7 +54,7 @@ changeShelf = (book, newShelf) => {
                             <h1>MyReads</h1>
                         </div>
                         <div className="list-books-content">
-                            <div>
+                            <div>                   
                                 <Shelf
                                     title="Currently Reading"
                                     books={this.getShelfBooks("currentlyReading")}
