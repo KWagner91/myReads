@@ -23,25 +23,27 @@ class SearchBar extends Component {
   }
 
 
+
+
+
 getBooks = (event) => {
     const value = event.target.value
     this.searchBooks(value)
     
-    if(value) {
-        BooksAPI.search(value).then(books => {
-			if(!books || books.error) {
-				this.setState({ results: [] })
-			 } 
-			else {
-				this.setState(() => {
-				  return {results: books}
-				})
-			} 	
-})
+     BooksAPI.search(value,30).then((books) => {
+      if(!!books){
+        if(books.length>0){
+          const results = books.map((book) => {
+            const existingBook = this.state.books.find((b) => b.id === book.id)
+            book.shelf = !!existingBook ? existingBook.shelf : 'none'
+            return book
+          });
+          this.setState({ results })
+        }  
+      }
+    })
 }
-}
-
-
+    
 
  searchBooks = (userInput) => {
     if (userInput.length !== 0){

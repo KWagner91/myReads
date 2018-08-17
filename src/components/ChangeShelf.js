@@ -26,7 +26,7 @@ class ChangingShelf extends Component{
     render(){
 		const { book } = this.props
 		
-		let currentShelf = 'none'
+		let currentShelf = this.props.book.shelf
 		
         return(
             <div className="book-shelf-changer">
