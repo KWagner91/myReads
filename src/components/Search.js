@@ -19,10 +19,9 @@ class SearchBar extends Component {
 
 	state = {
 		query: '',
-		results: []
+		results: [],
+		books: this.props.books
   }
-
-
 
 
 
@@ -30,9 +29,9 @@ getBooks = (event) => {
     const value = event.target.value
     this.searchBooks(value)
     
-     BooksAPI.search(value,30).then((books) => {
+     BooksAPI.search(value, 30).then((books) => {
       if(!!books){
-        if(books.length>0){
+        if(books.length > 0){
           const results = books.map((book) => {
             const existingBook = this.state.books.find((b) => b.id === book.id)
             book.shelf = !!existingBook ? existingBook.shelf : 'none'

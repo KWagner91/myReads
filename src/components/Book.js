@@ -12,7 +12,6 @@ class Books extends Component {
 
 	render() {
 		const {book} = this.props;
-		
 		const noCover = "http://via.placeholder.com/128x193?text=No%20Cover";
 		const coverImg = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : noCover
 		const title = book.title ? book.title : "No title available"
