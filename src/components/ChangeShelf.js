@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
-import Books from "./Book";
+
 
 
 class ChangingShelf extends Component{
@@ -16,8 +15,6 @@ class ChangingShelf extends Component{
 	
     changeShelf = (event) => {
         this.props.changeShelf(this.props.book, event.target.value);
-        currentShelf: event.target.value
-    
     };
     
 

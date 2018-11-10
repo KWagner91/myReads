@@ -1,11 +1,8 @@
 // Tutorial from https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20
 import React, {Component} from 'react'
-import ReactDom from 'react-dom'
 import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
 import Books from "./Book";
-import ChangingShelf from './ChangeShelf'
-import { Link } from 'react-router-dom'
 
 
 
