@@ -3,6 +3,10 @@
 Build a Book Read App using React, part of Udacity Course "Front-End Web Developer Nanodegree Program":
 > In the MyReads project, you'll create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
 
+Udacity provided a starter code for this project: 
+* All the CSS and HTML markup that may be used but omits the React code that is required to complete the project
+* The provided code will demonstrate a static HTML page of the finished application, but with no interactive functionality
+
 ## Instructions
 
 To get started please follow the instructions bellow:
@@ -25,7 +29,7 @@ _yarn_
 > yarn start
 
 
-## Specifications
+## Project Specifications
 
 What the starter code provided:
 ```bash
@@ -48,6 +52,10 @@ What the starter code provided:
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
+
+* Using React to make a functional book track app. The user can move books between shelves and the same information is displayed after browser refresh. 
+* A search box lets user search for specific books and keywords using JavaScript
+* Routing changes the URL of the search page and main page
 
 
 ### Please download the files and start playing by opening index.html in your favourite browser!
